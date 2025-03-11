@@ -1,108 +1,226 @@
-<!DOCTYPE html>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Create an Account</title>
-    <!-- Adding Tailwind CSS CDN for styling -->
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-</head>
-<body>
-
-<div class="flex items-center justify-center min-h-screen bg-gradient-to-r from-blue-500 via-indigo-600 to-purple-700">
-    <div class="w-full max-w-lg p-8 bg-white rounded-xl shadow-2xl">
-        <h2 class="text-4xl font-extrabold text-center text-gray-900 mb-6">Create an Account</h2>
-        
-        <!-- Display form errors at the top of the form -->
-        <div class="mb-4 text-red-500" id="form-errors" style="display: none;">
-            <ul>
-                <li>Username is required.</li>
-                <li>Email is invalid.</li>
-                <li>Password must be at least 8 characters.</li>
-            </ul>
-        </div>
-
-        <form method="post" class="space-y-6" id="registration-form">
-            <!-- CSRF Token (for Django, uncomment the line below) -->
-            <!-- <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}"> -->
-
-            <!-- Username Field -->
-            <div>
-                <label for="username" class="block text-sm font-semibold text-gray-700 mb-2">Username</label>
-                <input type="text" id="username" name="username" class="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500" required>
-            </div>
-
-            <!-- Email Field -->
-            <div>
-                <label for="email" class="block text-sm font-semibold text-gray-700 mb-2">Email</label>
-                <input type="email" id="email" name="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500" required>
-            </div>
-
-            <!-- Password Fields -->
-            <div>
-                <label for="password1" class="block text-sm font-semibold text-gray-700 mb-2">Password</label>
-                <input type="password" id="password1" name="password1" class="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500" required>
-            </div>
-            <div>
-                <label for="password2" class="block text-sm font-semibold text-gray-700 mb-2">Confirm Password</label>
-                <input type="password" id="password2" name="password2" class="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500" required>
-            </div>
-
-            <!-- Role Selection Field -->
-            <div>
-                <label for="role" class="block text-sm font-semibold text-gray-700 mb-2">Role</label>
-                <select id="role" name="role" class="w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500" required>
-                    <option value="" disabled selected>Select your role</option>
-                    <option value="user">User </option>
-                    <option value="technician">Technician</option>
-                </select>
-            </div>
-
-            <!-- Submit Button -->
-            <div class="text-center">
-                <button type="submit" class="w-full py-3 text-lg font-semibold text-white bg-blue-600 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 ease-in-out">
-                    Register
-                </button>
-            </div>
-        </form>
-
-        <!-- Link to Sign In -->
-        <p class="mt-6 text-sm text-center text-gray-600">
-            Already have an account? 
-            <a href="/login" class="text-blue-600 hover:text-blue-800 font-bold">
-                Sign In
-            </a>
-        </p>
-    </div>
-</div>
-
-<script>
-    // Example JavaScript to handle form submission and error display
-    document.getElementById('registration-form ').addEventListener('submit', function(event) {
-        event.preventDefault();
-        // Simulate form validation
-        const errors = [];
-        const username = document.getElementById('username').value;
-        const email = document.getElementById('email').value;
-        const password1 = document.getElementById('password1').value;
-        const password2 = document.getElementById('password2').value;
-
-        if (!username) errors.push('Username is required.');
-        if (!email.includes('@')) errors.push('Email is invalid.');
-        if (password1.length < 8) errors.push('Password must be at least 8 characters.');
-        if (password1 !== password2) errors.push('Passwords do not match.');
-
-        const errorDiv = document.getElementById('form-errors');
-        if (errors.length > 0) {
-            errorDiv.style.display = 'block';
-            errorDiv.innerHTML = '<ul>' + errors.map(error => `<li>${error}</li>`).join('') + '</ul>';
-        } else {
-            errorDiv.style.display = 'none';
-            // Submit the form or perform further actions
-            alert('Form submitted successfully!');
+    <title>FixHub - Your Trusted Repair Service Partner</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
         }
-    });
-</script>
+    </style>
+</head>
+<body class="min-h-screen bg-gradient-to-b from-white to-gray-50">
+
+    <!-- Hero Section -->
+    <section class="py-20 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 relative z-10">
+            <div class="text-center max-w-3xl mx-auto">
+                <span class="inline-block px-4 py-1.5 mb-6 text-sm font-medium bg-blue-100 text-blue-600 rounded-full">
+                    Professional Device Repair Marketplace
+                </span>
+                <h1 class="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
+                    Your Trusted Repair Service Partner
+                </h1>
+                <p class="text-lg md:text-xl text-gray-600 mb-8">
+                    Find verified technicians for your mobile and laptop repairs with ease. Fast, reliable, and hassle-free service at your doorstep in Dhaka.
+                </p>
+                <div class="flex justify-center">
+                    <a href="/users/login/" class="bg-blue-600 text-white px-6 py-3 rounded-full flex items-center justify-center">
+                        Find a Technician <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="absolute top-1/2 -translate-y-1/2 left-0 w-64 h-64 bg-blue-100 rounded-full filter blur-3xl"></div>
+        <div class="absolute top-1/2 -translate-y-1/2 right-0 w-64 h-64 bg-blue-100 rounded-full filter blur-3xl"></div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold mb-4">How It Works</h2>
+                <p class="text-lg text-gray-600">Get your device fixed in three simple steps</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white shadow-lg p-8 rounded-2xl text-center transform transition-all duration-200 hover:scale-105">
+                    <div class="bg-blue-100 w-16 h-16 rounded-xl flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-laptop text-blue-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4">Post Your Issue</h3>
+                    <p class="text-gray-600">Describe your device problem in detail</p>
+                </div>
+                <div class="bg-white shadow-lg p-8 rounded-2xl text-center transform transition-all duration-200 hover:scale-105">
+                    <div class="bg-blue-100 w-16 h-16 rounded-xl flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-clock text-blue-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4">Get Bids</h3>
+                    <p class="text-gray-600">Receive repair offers from verified technicians</p>
+                </div>
+                <div class="bg-white shadow-lg p-8 rounded-2xl text-center transform transition-all duration-200 hover:scale-105">
+                    <div class="bg-blue-100 w-16 h-16 rounded-xl flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-paper-plane text-blue-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-4">Choose & Fix</h3>
+                    <p class="text-gray-600">Select a technician and get your device repaired</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us Section -->
+    <section class="py-20 bg-gradient-to-b from-gray-50 to-white">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold mb-4">Why Choose FixHub</h2>
+                <p class="text-lg text-gray-600">We ensure quality service and customer satisfaction</p>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="bg-white shadow-lg p-6 rounded-xl transform transition-all duration-200 hover:-translate-y-1">
+                    <div class="text-blue-600 mb-4">
+                        <i class="fas fa-check-circle text-2xl"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">Verified Technicians</h3>
+                    <p class="text-gray-600 text-sm">All our technicians are thoroughly vetted</p>
+                </div>
+                <div class="bg-white shadow-lg p-6 rounded-xl transform transition-all duration-200 hover:-translate-y-1">
+                    <div class="text-blue-600 mb-4">
+                        <i class="fas fa-dollar-sign text-2xl"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">Transparent Pricing</h3>
+                    <p class="text-gray-600 text-sm">No hidden fees or surprise charges</p>
+                </div>
+                <div class="bg-white shadow-lg p-6 rounded-xl transform transition-all duration-200 hover:-translate-y-1">
+                    <div class="text-blue-600 mb-4">
+                        <i class="fas fa-shield-alt text-2xl"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">Warranty on Repairs</h3>
+                    <p class="text-gray-600 text-sm">All repairs come with a service warranty</p>
+                </div>
+                <div class="bg-white shadow-lg p-6 rounded-xl transform transition-all duration-200 hover:-translate-y-1">
+                    <div class="text-blue-600 mb-4">
+                        <i class="fas fa-star text-2xl"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold mb-2">Customer Reviews</h3>
+                    <p class="text-gray-600 text-sm">Highly rated by our satisfied customers</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold mb-4">What Our Customers Say</h2>
+                <p class="text-lg text-gray-600">Read about experiences from our satisfied customers</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white shadow-lg p-8 rounded-2xl">
+                    <div class="flex items-center gap-2 mb-4">
+                        <i class="fas fa-star text-blue-600"></i>
+                        <i class="fas fa-star text-blue-600"></i>
+                        <i class="fas fa-star text-blue-600"></i>
+                        <i class="fas fa-star text-blue-600"></i>
+                        <i class="fas fa-star text-blue-600"></i>
+                    </div>
+                    <p class="text-gray-600 mb-6">Quick and professional service. The technician fixed my laptop's screen in no time!</p>
+                    <div>
+                        <p class="font-semibold">Ahmed Hassan</p>
+                        <p class="text-sm text-gray-500">Software Engineer</p>
+                    </div>
+                </div>
+                <div class="bg-white shadow-lg p-8 rounded-2xl">
+                    <div class="flex items-center gap-2 mb-4">
+                        <i class="fas fa-star text-blue-600"></i>
+                        <i class="fas fa-star text-blue-600"></i>
+                        <i class="fas fa-star text-blue-600"></i>
+                        <i class="fas fa-star text-blue-600"></i>
+                        <i class="fas fa-star text-blue-600"></i>
+                    </div>
+                    <p class="text-gray-600 mb-6">Excellent service! They were able to recover all my important data from my damaged phone.</p>
+                    <div>
+                        <p class="font-semibold">Fatima Rahman</p>
+                        <p class="text-sm text-gray-500">Business Owner</p>
+                    </div>
+                </div>
+                <div class="bg-white shadow-lg p-8 rounded-2xl">
+                    <div class="flex items-center gap-2 mb-4">
+                        <i class="fas fa-star text-blue-600"></i>
+                        <i class="fas fa-star text-blue-600"></i>
+                        <i class="fas fa-star text-blue-600"></i>
+                        <i class="fas fa-star text-blue-600"></i>
+                        <i class="fas fa-star text-blue-600"></i>
+                    </div>
+                    <p class="text-gray-600 mb-6">Very reliable and affordable. I highly recommend their services to everyone in Dhaka.</p>
+                    <div>
+                        <p class="font-semibold">Karim Ali</p>
+                        <p class="text-sm text-gray-500">Student</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 bg-gradient-to-b from-gray-50 to-white relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 relative z-10">
+            <div class="bg-white shadow-lg max-w-3xl mx-auto p-12 rounded-3xl text-center">
+                <h2 class="text-3xl font-bold mb-6">Ready to Fix Your Device?</h2>
+                <p class="text-lg text-gray-600 mb-8">Join thousands of satisfied customers who trust FixHub for their device repairs</p>
+                <div class="flex justify-center">
+                    <a href="/users/login/" class="bg-blue-600 text-white px-6 py-3 rounded-full flex items-center justify-center">
+                        Post Your Repair Request Now <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-white py-12 border-t">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="font-bold text-xl mb-4">FixHub</h3>
+                    <p class="text-gray-600 text-sm">Your trusted partner for mobile and laptop repairs in Dhaka</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="text-gray-600 hover:text-blue-600">About Us</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-blue-600">Services</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-blue-600">Technicians</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-blue-600">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Services</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="text-gray-600 hover:text-blue-600">Mobile Repair</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-blue-600">Laptop Repair</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-blue-600">Data Recovery</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-blue-600">Screen Replacement</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Contact Us</h4>
+                    <ul class="space-y-2 text-sm text-gray-600">
+                        <li>Dhaka, Bangladesh</li>
+                        <li>Email: support@fixhub.app</li>
+                        <li>Phone: +880 1647472724</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-12 pt-8 border-t text-center text-sm text-gray-600">
+                <p>&copy; 2025 FixHub. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
 
 </body>
 </html>
